@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ---------- Brand theme ---------- */
+:root {
+  --truth:        #2563eb;
+  --truth-light:  #dbeafe;
+  --truth-dark:   #1e40af;
+
+  --justice:      #059669;
+  --justice-light:#d1fae5;
+  --justice-dark: #047857;
+
+  --accent:       #f4b400;
+  --accent-light: #fef9c3;
+
+  --dark:         #0f172a;
+  --light:        #ffffff;
+  --gray:         #64748b;
+  --gray-light:   #f1f5f9;
+
+  --radius:       14px;
+  --shadow-lg:    0 12px 40px rgba(0,0,0,.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply text-gray-900 bg-white leading-relaxed font-sans;
+}
+
+@layer utilities {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold transition-transform rounded-[var(--radius)] no-underline;
+  }
+  .btn:hover { transform: translateY(-3px); }
+  .btn-truth {
+    @apply text-white;
+    background: linear-gradient(135deg, var(--truth) 0%, var(--truth-dark) 100%);
+    box-shadow: 0 8px 20px rgba(37,99,235,.25);
+  }
+  .btn-justice {
+    @apply text-white;
+    background: linear-gradient(135deg, var(--justice) 0%, var(--justice-dark) 100%);
+    box-shadow: 0 8px 20px rgba(5,150,105,.25);
+  }
+}
