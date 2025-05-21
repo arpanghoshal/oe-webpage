@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Header from '@/components/Header';
 import CalendlyButton from '@/components/CalendlyButton';
-import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
+import { SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
