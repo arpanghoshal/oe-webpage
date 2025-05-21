@@ -1,6 +1,16 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+
+interface Calendly {
+  initPopupWidget: (options: { url: string }) => void;
+}
+
+declare global {
+  interface Window {
+    Calendly?: Calendly;
+  }
+}
 
 export default function CalendlyButton(
   { url, children }: { url: string; children: React.ReactNode },
@@ -8,8 +18,13 @@ export default function CalendlyButton(
   const open = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
-      // @ts-expect-error – calendly script attaches global
-      window.Calendly?.initPopupWidget?.({ url });
+      if (window.Calendly) {
+        window.Calendly.initPopupWidget({ url });
+      } else {
+        console.error('Calendly widget not loaded');
+        // Fallback to direct URL open
+        window.open(url, '_blank');
+      }
     },
     [url],
   );

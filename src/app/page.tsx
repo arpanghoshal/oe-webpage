@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Header from '@/components/Header';
 import CalendlyButton from '@/components/CalendlyButton';
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
@@ -104,7 +105,10 @@ export default function Home() {
                   </div>
                   <h3 className="font-bold text-xl mb-3">{c.title}</h3>
                   <p className="text-[var(--gray)] mb-4">{c.body}</p>
-                  <a href="#booking" className="btn btn-truth">Talk to Us</a>
+                  <div className="flex gap-3">
+                    <a href="#booking" className="btn btn-truth">Talk to Us</a>
+                    <a href="#" className="btn btn-outline-truth">View Pitch Deck&nbsp;<i className="fas fa-arrow-right" /></a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -113,11 +117,29 @@ export default function Home() {
           {[['Civic','https://civic.operatingequity.ai'],['LoveAndLaw','https://loveandlaw.operatingequity.ai']].map(([name,src]) => (
             <div key={name} className="mb-16">
               <h3 className="text-xl font-semibold mb-4">{name}</h3>
-              <iframe
-                src={src}
-                title={name}
-                className="w-full min-h-[600px] rounded-[var(--radius)] border border-[var(--gray)] shadow-lg"
-              />
+              <div className="relative w-full pb-[56.25%]">
+                <iframe
+                  src={src}
+                  title={name}
+                  className="absolute top-0 left-0 w-full h-full rounded-[var(--radius)] border border-[var(--gray)] shadow-lg"
+                />
+                <SignedOut>
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-md flex flex-col items-center justify-center z-10 rounded-[var(--radius)]">
+                    <h4 className="text-xl font-bold mb-4">Sign in to view this demo</h4>
+                    <p className="text-[var(--gray)] mb-6 text-center max-w-md px-4">
+                      You need to be signed in to access the {name} demo. Please sign in or sign up to continue.
+                    </p>
+                    <div className="flex gap-4">
+                      <SignInButton mode="modal">
+                        <button className="btn btn-truth">Sign In</button>
+                      </SignInButton>
+                      <SignUpButton mode="modal">
+                        <button className="btn btn-justice">Sign Up</button>
+                      </SignUpButton>
+                    </div>
+                  </div>
+                </SignedOut>
+              </div>
             </div>
           ))}
         </div>
