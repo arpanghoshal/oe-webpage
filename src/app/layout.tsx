@@ -6,7 +6,7 @@ import { ClerkProvider, SignInButton, SignUpButton, SignedIn, SignedOut, UserBut
 const inter = Inter({ subsets: ['latin'], weight: ['400','500','600','700','800'] });
 
 export const metadata = {
-  title: 'OperatingEquity.ai — Investing in Truth & Justice',
+  title: 'OperatingEquity.ai — Enabling Truth & Justice',
   description: 'Capital for ventures that advance transparency, fairness and justice',
 };
 

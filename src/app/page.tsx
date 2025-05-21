@@ -16,11 +16,11 @@ export default function Home() {
         <div className="container mx-auto grid gap-16 md:grid-cols-2 px-5 max-w-screen-xl">
           <div>
             <h1 className="mb-5 text-4xl md:text-5xl font-extrabold leading-tight">
-              Invest in <span className="text-[var(--justice)]">Truth</span> &amp;{' '}
+              Enabling <span className="text-[var(--justice)]">Truth</span> &amp;{' '}
               <span className="text-[var(--justice)]">Justice</span>
             </h1>
             <p className="mb-8 text-lg text-[var(--gray)] max-w-prose">
-              Founded by entrepreneur <strong><a href="https://www.linkedin.com/in/halseyminor/" target="_blank" rel="noopener noreferrer">Halsey Minor</a></strong> (CNET, Salesforce), OperatingEquity.ai invests in ventures that promote transparency, fairness, and justice.
+              Founded by entrepreneur <strong><a href="https://www.linkedin.com/in/halseyminor/" target="_blank" rel="noopener noreferrer">Halsey Minor</a></strong> (CNET, Salesforce), OperatingEquity.ai supports ventures that promote transparency, fairness, and justice.
             </p>
             <a href="#companies" className="btn btn-truth">
               Explore Opportunities&nbsp;<i className="fas fa-arrow-right" />
@@ -64,7 +64,7 @@ export default function Home() {
       {/* COMPANIES & EMBEDDED */}
       <section id="companies" className="py-24">
         <div className="container mx-auto px-5 max-w-screen-xl">
-          <h2 className="text-center text-3xl font-semibold mb-12">Our Companies & Investments</h2>
+          <h2 className="text-center text-3xl font-semibold mb-12">Our Companies & Portfolio</h2>
 
           <div className="grid gap-10 md:grid-cols-2 mb-16">
             {[{
@@ -174,7 +174,7 @@ export default function Home() {
           <h2 className="text-3xl font-semibold mb-6">About Us</h2>
           <p className="text-[var(--gray)]">
             OperatingEquity.ai was founded by a team of technologists and impact
-            investors dedicated to the belief that capital can be a force for
+            partners dedicated to the belief that capital can be a force for
             positive change. Our portfolio companies advance truth and justice
             while generating market-rate returns.
           </p>
@@ -190,14 +190,14 @@ export default function Home() {
           <div>
             <h3 className="font-semibold mb-3">OperatingEquity.ai</h3>
             <p className="text-sm text-[var(--gray-light)]">
-              Investing in truth, justice, and transparency for a better world.
+              Supporting truth, justice, and transparency for a better world.
             </p>
           </div>
           <div>
             <h3 className="font-semibold mb-3">Connect</h3>
             <ul className="space-y-2 text-[var(--gray-light)] text-sm">
               <li><a href="#booking">Contact Us</a></li>
-              <li><a href="#">Investor Portal</a></li>
+              <li><a href="#">Partner Portal</a></li>
               <li><a href="#">Careers</a></li>
             </ul>
           </div>
