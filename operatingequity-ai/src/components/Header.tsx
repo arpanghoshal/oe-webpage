@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function Header() {
   const ref = useRef<HTMLElement>(null);
@@ -22,7 +23,7 @@ export default function Header() {
     >
       <nav className="container mx-auto flex items-center justify-between py-5 px-5 max-w-screen-xl">
         <Link href="#" className="flex items-center gap-3 text-xl font-extrabold">
-          <img src="/oe-logo-white.jpeg" alt="OperatingEquity.ai logo" className="h-10 w-auto" />
+          <Image src="/oe-logo-white.jpeg" alt="OperatingEquity.ai logo" width={40} height={40} className="h-10 w-auto" />
           <span className="text-gray-900 tracking-tight" style={{letterSpacing: '0.01em'}}>Operating<span className="text-[var(--truth)]">Equity</span>.<em className="not-italic font-normal italic">ai</em></span>
         </Link>
 
