@@ -8,7 +8,7 @@ export default function CalendlyButton(
   const open = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
-      // @ts-ignore – calendly script attaches global
+      // @ts-expect-error – calendly script attaches global
       window.Calendly?.initPopupWidget?.({ url });
     },
     [url],
