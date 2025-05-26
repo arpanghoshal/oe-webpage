@@ -4,8 +4,8 @@ import { SignInButton, SignUpButton } from '@clerk/nextjs';
 export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 animate-gradient-xy"></div>
-      <div className="absolute top-6 right-6 flex gap-4">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-blue-50 to-gray-200 animate-gradient-xy"></div>
+      <div className="absolute top-6 right-6 flex gap-4 z-10">
         <SignInButton mode="modal">
           <button className="btn btn-truth">
             Sign In
@@ -17,7 +17,7 @@ export default function Home() {
           </button>
         </SignUpButton>
       </div>
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="relative min-h-screen flex flex-col items-center justify-center z-10">
         <div className="text-center">
           <Image 
             src="/oe-logo.png" 
