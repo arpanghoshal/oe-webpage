@@ -56,15 +56,16 @@ export default function Home() {
               </p>
               
               <SignInButton mode="modal">
-                <button className="w-full btn btn-truth mb-3">
-                  Sign In
+                <button className="w-full relative group px-8 py-3 font-semibold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:from-blue-700 hover:to-purple-700 mb-3">
+                  <span className="relative z-10">Sign In to Continue</span>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-200"></div>
                 </button>
               </SignInButton>
               
               <p className="text-xs text-gray-500">
                 Don't have an account? 
                 <SignUpButton mode="modal">
-                  <button className="ml-1 text-blue-600 hover:text-blue-700 font-medium">
+                  <button className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-semibold transition-all duration-200">
                     Sign up
                   </button>
                 </SignUpButton>
@@ -91,13 +92,14 @@ export default function Home() {
           <div className="flex gap-4 justify-center mb-12">
             <SignedOut>
               <SignInButton mode="modal">
-                <button className="btn btn-truth">
-                  Sign In
+                <button className="relative group px-8 py-3 font-semibold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:scale-105 hover:from-blue-700 hover:to-purple-700">
+                  <span className="relative z-10">Sign In</span>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-200"></div>
                 </button>
               </SignInButton>
               <SignUpButton mode="modal">
-                <button className="btn btn-justice">
-                  Sign Up
+                <button className="relative group px-8 py-3 font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-300 rounded-full hover:border-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:text-white hover:shadow-lg hover:scale-105">
+                  <span className="relative z-10">Sign Up</span>
                 </button>
               </SignUpButton>
             </SignedOut>
