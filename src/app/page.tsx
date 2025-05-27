@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Home() {
   const { isSignedIn } = useAuth();
   const router = useRouter();
+  const [showSignInPrompt, setShowSignInPrompt] = useState(false);
 
   const handleCardClick = async (destination: string) => {
     if (isSignedIn) {
@@ -19,13 +21,59 @@ export default function Home() {
         console.error('Error generating token:', error);
       }
     } else {
-      router.push('/sign-in');
+      setShowSignInPrompt(true);
     }
   };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 animate-gradient-xy"></div>
+      
+      {/* Sign In Prompt Modal */}
+      {showSignInPrompt && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowSignInPrompt(false)}></div>
+          <div className="relative bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full transform transition-all">
+            <button 
+              onClick={() => setShowSignInPrompt(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
+                <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              
+              <h3 className="text-lg font-medium text-gray-900 mb-2">Sign In Required</h3>
+              <p className="text-sm text-gray-500 mb-6">
+                Please sign in to access this application
+              </p>
+              
+              <SignInButton mode="modal">
+                <button className="w-full btn btn-truth mb-3">
+                  Sign In
+                </button>
+              </SignInButton>
+              
+              <p className="text-xs text-gray-500">
+                Don't have an account? 
+                <SignUpButton mode="modal">
+                  <button className="ml-1 text-blue-600 hover:text-blue-700 font-medium">
+                    Sign up
+                  </button>
+                </SignUpButton>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="relative min-h-screen flex flex-col items-center justify-center z-10">
         <div className="text-center mb-12">
           <Image 
@@ -72,8 +120,7 @@ export default function Home() {
               height={60} 
               className="mb-4"
             />
-            <h3 className="text-xl font-semibold mb-2">Civic Software Foundation</h3>
-            <p className="text-gray-600">Building technology for the public good</p>
+            <h3 className="text-xl font-semibold mb-2">Civic</h3>
           </div>
           
           <div 
@@ -88,7 +135,6 @@ export default function Home() {
               className="mb-4"
             />
             <h3 className="text-xl font-semibold mb-2">Love and Law</h3>
-            <p className="text-gray-600">Justice through compassion and legal excellence</p>
           </div>
         </div>
       </div>
