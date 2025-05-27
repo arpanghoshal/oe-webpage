@@ -196,7 +196,7 @@ export default function Home() {
         {/* Schedule Meeting Section */}
         <div className="mt-24 text-center animate-in fade-in slide-in-from-bottom-8 duration-700" style={{ animationDelay: '600ms' }}>
           <CalendlyButton url="https://calendly.com/halsey2005/45-minute-meeting">
-            Schedule a 45-Minute Meeting
+            Schedule a Meeting
           </CalendlyButton>
         </div>
       </div>
