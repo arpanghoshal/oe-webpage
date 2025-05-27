@@ -96,14 +96,11 @@ export default function Home() {
               className="relative z-10 mx-auto drop-shadow-2xl"
             />
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-12">
             <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
               OperatingEquity<span className="text-blue-600">.</span><em className="not-italic font-light">ai</em>
             </span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-md mx-auto mb-12">
-            Empowering ventures through strategic equity partnerships
-          </p>
           <div className="flex gap-4 justify-center">
             <SignedOut>
               <SignInButton mode="modal">
