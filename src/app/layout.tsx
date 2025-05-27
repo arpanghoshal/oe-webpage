@@ -2,7 +2,6 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { ClerkProvider } from "@clerk/nextjs";
-import Header from '@/components/Header';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400','500','600','700','800'] });
 
@@ -22,7 +21,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </head>
         <body className={inter.className}>
-          <Header />
           {children}
           {/* Calendly widget script */}
           <Script

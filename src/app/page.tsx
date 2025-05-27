@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       )}
       
-      <div className="relative min-h-screen flex flex-col items-center justify-center z-10 px-4 pt-32 pb-16">
+      <div className="relative min-h-screen flex flex-col items-center justify-center z-10 px-4 py-16">
         <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="relative inline-block mb-8">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
@@ -164,22 +164,7 @@ export default function Home() {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Civic Software Foundation</h3>
-              <p className="text-gray-600 mb-4">Empowering communities through innovative civic technology solutions</p>
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                  Civic Tech
-                </span>
-                <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                  Community
-                </span>
-              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Civic</h3>
             </div>
           </div>
           
@@ -207,31 +192,12 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Love and Law</h3>
-              <p className="text-gray-600 mb-4">Bridging hearts and justice through compassionate legal advocacy</p>
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                  </svg>
-                  Legal Tech
-                </span>
-                <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  Social Impact
-                </span>
-              </div>
             </div>
           </div>
         </div>
         
         {/* Schedule Meeting Section */}
         <div className="mt-24 text-center animate-in fade-in slide-in-from-bottom-8 duration-700" style={{ animationDelay: '600ms' }}>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Let&apos;s Connect</h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Interested in exploring partnership opportunities? Schedule a meeting to discuss how we can work together.
-          </p>
           <CalendlyButton url="https://calendly.com/halsey2005/45-minute-meeting">
             Schedule a 45-Minute Meeting
           </CalendlyButton>
