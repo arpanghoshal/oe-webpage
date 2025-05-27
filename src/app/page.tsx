@@ -3,13 +3,13 @@
 import Image from 'next/image';
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { useAuth } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import CalendlyButton from '@/components/CalendlyButton';
 
 export default function Home() {
   const { isSignedIn } = useAuth();
-  const router = useRouter();
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const handleCardClick = async (destination: string) => {
     if (isSignedIn) {
@@ -26,14 +26,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 animate-gradient-xy"></div>
+    <div className="min-h-screen relative overflow-hidden bg-gray-50">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-pink-50/50 animate-gradient-subtle"></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
       
       {/* Sign In Prompt Modal */}
       {showSignInPrompt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowSignInPrompt(false)}></div>
-          <div className="relative bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full transform transition-all">
+          <div className="relative bg-white rounded-3xl shadow-2xl p-10 max-w-md w-full transform transition-all animate-in slide-in-from-bottom duration-300">
             <button 
               onClick={() => setShowSignInPrompt(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
@@ -50,20 +54,25 @@ export default function Home() {
                 </svg>
               </div>
               
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Sign In Required</h3>
-              <p className="text-sm text-gray-500 mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Sign In Required</h3>
+              <p className="text-base text-gray-600 mb-8">
                 Please sign in to access this application
               </p>
               
               <SignInButton mode="modal">
-                <button className="w-full relative group px-8 py-3 font-semibold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:from-blue-700 hover:to-purple-700 mb-3">
-                  <span className="relative z-10">Sign In to Continue</span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-200"></div>
+                <button className="w-full relative group px-8 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl hover:shadow-xl hover:scale-[1.02] mb-4">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Sign In to Continue
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
+                  <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </button>
               </SignInButton>
               
               <p className="text-xs text-gray-500">
-                Don't have an account? 
+                Don&apos;t have an account? 
                 <SignUpButton mode="modal">
                   <button className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-semibold transition-all duration-200">
                     Sign up
@@ -75,69 +84,157 @@ export default function Home() {
         </div>
       )}
       
-      <div className="relative min-h-screen flex flex-col items-center justify-center z-10">
-        <div className="text-center mb-12">
-          <Image 
-            src="/oe-logo.png" 
-            alt="OperatingEquity.ai logo" 
-            width={200} 
-            height={200} 
-            className="mx-auto mb-8"
-          />
-          <h1 className="text-3xl font-extrabold mb-8">
-            <span className="text-gray-900 tracking-tight" style={{letterSpacing: '0.01em'}}>
-              OperatingEquity.<em className="not-italic font-normal italic">ai</em>
+      <div className="relative min-h-screen flex flex-col items-center justify-center z-10 px-4 pt-32 pb-16">
+        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="relative inline-block mb-8">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+            <Image 
+              src="/oe-logo.png" 
+              alt="OperatingEquity.ai logo" 
+              width={180} 
+              height={180} 
+              className="relative z-10 mx-auto drop-shadow-2xl"
+            />
+          </div>
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+            <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              OperatingEquity<span className="text-blue-600">.</span><em className="not-italic font-light">ai</em>
             </span>
           </h1>
-          <div className="flex gap-4 justify-center mb-12">
+          <p className="text-lg text-gray-600 max-w-md mx-auto mb-12">
+            Empowering ventures through strategic equity partnerships
+          </p>
+          <div className="flex gap-4 justify-center">
             <SignedOut>
               <SignInButton mode="modal">
-                <button className="relative group px-8 py-3 font-semibold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-lg hover:scale-105 hover:from-blue-700 hover:to-purple-700">
-                  <span className="relative z-10">Sign In</span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-200"></div>
+                <button className="relative group px-10 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl hover:shadow-2xl hover:scale-[1.02] hover:from-blue-700 hover:to-purple-700">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    Sign In
+                  </span>
+                  <div className="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </button>
               </SignInButton>
               <SignUpButton mode="modal">
-                <button className="relative group px-8 py-3 font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-300 rounded-full hover:border-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:text-white hover:shadow-lg hover:scale-105">
-                  <span className="relative z-10">Sign Up</span>
+                <button className="relative group px-10 py-4 font-semibold text-gray-700 transition-all duration-300 bg-white border-2 border-gray-200 rounded-2xl hover:border-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:text-white hover:shadow-2xl hover:scale-[1.02]">
+                  <span className="relative z-10">Get Started</span>
                 </button>
               </SignUpButton>
             </SignedOut>
             <SignedIn>
-              <UserButton afterSignOutUrl="/" />
+              <div className="flex items-center gap-4">
+                <span className="text-gray-600">Welcome back!</span>
+                <UserButton 
+                  afterSignOutUrl="/" 
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-12 h-12 shadow-lg"
+                    }
+                  }}
+                />
+              </div>
             </SignedIn>
           </div>
         </div>
         
         {/* Portfolio Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full mt-16">
           <div 
             onClick={() => handleCardClick('https://civic.operatingequity.ai')}
-            className="bg-white/90 backdrop-blur rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer"
+            onMouseEnter={() => setHoveredCard('civic')}
+            onMouseLeave={() => setHoveredCard(null)}
+            className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-8 duration-700"
+            style={{ animationDelay: '200ms' }}
           >
-            <Image 
-              src="/civic-logo.png" 
-              alt="Civic Software Foundation" 
-              width={150} 
-              height={60} 
-              className="mb-4"
-            />
-            <h3 className="text-xl font-semibold mb-2">Civic</h3>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative p-10">
+              <div className="flex items-center justify-between mb-6">
+                <Image 
+                  src="/civic-logo.png" 
+                  alt="Civic Software Foundation" 
+                  width={160} 
+                  height={64} 
+                  className="transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className={`w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center transform transition-all duration-300 ${hoveredCard === 'civic' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Civic Software Foundation</h3>
+              <p className="text-gray-600 mb-4">Empowering communities through innovative civic technology solutions</p>
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  Civic Tech
+                </span>
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  Community
+                </span>
+              </div>
+            </div>
           </div>
           
           <div 
             onClick={() => handleCardClick('https://loveandlaw.operatingequity.ai')}
-            className="bg-white/90 backdrop-blur rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer"
+            onMouseEnter={() => setHoveredCard('loveandlaw')}
+            onMouseLeave={() => setHoveredCard(null)}
+            className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-8 duration-700"
+            style={{ animationDelay: '400ms' }}
           >
-            <Image 
-              src="/loveandlaw-logo.png" 
-              alt="Love and Law" 
-              width={150} 
-              height={60} 
-              className="mb-4"
-            />
-            <h3 className="text-xl font-semibold mb-2">Love and Law</h3>
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative p-10">
+              <div className="flex items-center justify-between mb-6">
+                <Image 
+                  src="/loveandlaw-logo.png" 
+                  alt="Love and Law" 
+                  width={160} 
+                  height={64} 
+                  className="transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className={`w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center transform transition-all duration-300 ${hoveredCard === 'loveandlaw' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Love and Law</h3>
+              <p className="text-gray-600 mb-4">Bridging hearts and justice through compassionate legal advocacy</p>
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                  </svg>
+                  Legal Tech
+                </span>
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                  Social Impact
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+        
+        {/* Schedule Meeting Section */}
+        <div className="mt-24 text-center animate-in fade-in slide-in-from-bottom-8 duration-700" style={{ animationDelay: '600ms' }}>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Let&apos;s Connect</h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Interested in exploring partnership opportunities? Schedule a meeting to discuss how we can work together.
+          </p>
+          <CalendlyButton url="https://calendly.com/halsey2005/45-minute-meeting">
+            Schedule a 45-Minute Meeting
+          </CalendlyButton>
         </div>
       </div>
     </div>

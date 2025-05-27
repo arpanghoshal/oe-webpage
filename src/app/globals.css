@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 @tailwind base;
 @tailwind components;
@@ -25,6 +25,12 @@
 
   --radius:       14px;
   --shadow-lg:    0 12px 40px rgba(0,0,0,.1);
+  --shadow-2xl:   0 25px 50px -12px rgba(0,0,0,.25);
+  
+  /* Animation timings */
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 html { scroll-behavior: smooth; }
@@ -60,7 +66,46 @@ body {
   }
   .animate-gradient-subtle {
     background-size: 400% 400%;
-    animation: gradient-subtle 15s ease infinite;
+    animation: gradient-subtle 20s ease infinite;
+  }
+  
+  /* Animation utilities */
+  .animate-in {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: var(--ease-out);
+  }
+  
+  .fade-in {
+    animation-name: fade-in;
+  }
+  
+  .slide-in-from-bottom {
+    animation-name: slide-in-from-bottom;
+  }
+  
+  .slide-in-from-bottom-4 {
+    --slide-distance: 1rem;
+    animation-name: slide-in-from-bottom;
+  }
+  
+  .slide-in-from-bottom-8 {
+    --slide-distance: 2rem;
+    animation-name: slide-in-from-bottom;
+  }
+  
+  /* Hover animations */
+  .hover-lift {
+    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2xl);
+  }
+  
+  /* Focus effects */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500;
   }
 }
 
@@ -89,4 +134,49 @@ body {
   50% {
     background-position: 100% 50%;
   }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(var(--slide-distance, 1rem));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--truth);
+}
+
+/* Selection colors */
+::selection {
+  background: var(--truth);
+  color: white;
 }
