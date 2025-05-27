@@ -38,6 +38,17 @@ export default function PortfolioPage() {
     }
   ];
 
+  const handleSiteClick = async (url: string) => {
+    try {
+      const response = await fetch('/api/generate-token');
+      const { token } = await response.json();
+      window.location.href = `${url}?token=${token}`;
+    } catch (error) {
+      console.error('Failed to generate token:', error);
+      alert('Failed to authenticate. Please try again.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -52,10 +63,10 @@ export default function PortfolioPage() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {portfolioSites.map((site) => (
-            <a
+            <div
               key={site.id}
-              href={site.url}
-              className={`block p-8 rounded-lg border-2 ${site.borderColor} ${site.bgColor} ${site.hoverBg} transition-all duration-200 transform hover:scale-105 hover:shadow-lg`}
+              onClick={() => handleSiteClick(site.url)}
+              className={`block p-8 rounded-lg border-2 ${site.borderColor} ${site.bgColor} ${site.hoverBg} transition-all duration-200 transform hover:scale-105 hover:shadow-lg cursor-pointer`}
             >
               <div className="flex flex-col items-center text-center">
                 <div className="w-32 h-32 relative mb-6">
@@ -73,7 +84,7 @@ export default function PortfolioPage() {
                   {site.description}
                 </p>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>
