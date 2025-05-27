@@ -1,7 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
-import { ClerkProvider, SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ['latin'], weight: ['400','500','600','700','800'] });
 
@@ -21,19 +21,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </head>
         <body className={inter.className}>
-          <div className="absolute top-5 right-5 z-50 flex gap-4">
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="btn btn-truth">Sign In</button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <button className="btn btn-justice">Sign Up</button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-          </div>
           {children}
           {/* Calendly widget script */}
           <Script
