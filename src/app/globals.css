@@ -58,6 +58,10 @@ body {
     background-size: 300% 300%;
     animation: gradient-xy 10s ease infinite;
   }
+  .animate-gradient-subtle {
+    background-size: 400% 400%;
+    animation: gradient-subtle 15s ease infinite;
+  }
 }
 
 @keyframes gradient-xy {
@@ -75,5 +79,14 @@ body {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-subtle {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
