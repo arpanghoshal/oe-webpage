@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { useAuth } from '@clerk/nextjs';
 import { useState } from 'react';
-import CalendlyButton from '@/components/CalendlyButton';
 
 export default function Home() {
   const { isSignedIn } = useAuth();
@@ -136,69 +135,64 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Portfolio Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full mt-16">
-          <div 
-            onClick={() => handleCardClick('https://civic.operatingequity.ai')}
-            onMouseEnter={() => setHoveredCard('civic')}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-8 duration-700"
-            style={{ animationDelay: '200ms' }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative p-10">
-              <div className="flex items-center justify-between mb-6">
-                <Image 
-                  src="/civic-logo.png" 
-                  alt="Civic Software Foundation" 
-                  width={160} 
-                  height={64} 
-                  className="transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center transform transition-all duration-300 ${hoveredCard === 'civic' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+        {/* Portfolio Cards - Only shown when signed in */}
+        <SignedIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full mt-16">
+            <div 
+              onClick={() => handleCardClick('https://civic.operatingequity.ai')}
+              onMouseEnter={() => setHoveredCard('civic')}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-8 duration-700"
+              style={{ animationDelay: '200ms' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative p-10">
+                <div className="flex items-center justify-between mb-6">
+                  <Image 
+                    src="/civic-logo.png" 
+                    alt="Civic Software Foundation" 
+                    width={160} 
+                    height={64} 
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center transform transition-all duration-300 ${hoveredCard === 'civic' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
                 </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Civic</h3>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Civic</h3>
+            </div>
+            
+            <div 
+              onClick={() => handleCardClick('https://loveandlaw.operatingequity.ai')}
+              onMouseEnter={() => setHoveredCard('loveandlaw')}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-8 duration-700"
+              style={{ animationDelay: '400ms' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative p-10">
+                <div className="flex items-center justify-between mb-6">
+                  <Image 
+                    src="/loveandlaw-logo.png" 
+                    alt="Love and Law" 
+                    width={160} 
+                    height={64} 
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center transform transition-all duration-300 ${hoveredCard === 'loveandlaw' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Love and Law</h3>
+              </div>
             </div>
           </div>
-          
-          <div 
-            onClick={() => handleCardClick('https://loveandlaw.operatingequity.ai')}
-            onMouseEnter={() => setHoveredCard('loveandlaw')}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden transform hover:scale-[1.02] animate-in fade-in slide-in-from-bottom-8 duration-700"
-            style={{ animationDelay: '400ms' }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative p-10">
-              <div className="flex items-center justify-between mb-6">
-                <Image 
-                  src="/loveandlaw-logo.png" 
-                  alt="Love and Law" 
-                  width={160} 
-                  height={64} 
-                  className="transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center transform transition-all duration-300 ${hoveredCard === 'loveandlaw' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Love and Law</h3>
-            </div>
-          </div>
-        </div>
-        
-        {/* Schedule Meeting Section */}
-        <div className="mt-24 text-center animate-in fade-in slide-in-from-bottom-8 duration-700" style={{ animationDelay: '600ms' }}>
-          <CalendlyButton url="https://calendly.com/halsey2005/45-minute-meeting">
-            Schedule a Meeting
-          </CalendlyButton>
-        </div>
+        </SignedIn>
       </div>
     </div>
   );
