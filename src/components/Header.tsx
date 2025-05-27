@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function Header() {
   const ref = useRef<HTMLElement>(null);
@@ -40,9 +41,25 @@ export default function Header() {
           ))}
         </ul>
 
-        <a href="#booking" className="btn btn-truth">
-          <i className="fa-regular fa-calendar" />&nbsp;Book&nbsp;a&nbsp;Call
-        </a>
+        <SignedOut>
+          <SignInButton 
+            mode="modal" 
+            forceRedirectUrl="/portfolio"
+            signUpForceRedirectUrl="/portfolio"
+          >
+            <button className="btn btn-truth">
+              Sign In
+            </button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <div className="flex items-center gap-4">
+            <Link href="/portfolio" className="font-medium hover:text-[var(--truth)]">
+              Portfolio
+            </Link>
+            <UserButton />
+          </div>
+        </SignedIn>
       </nav>
     </header>
   );
