@@ -12,7 +12,20 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        elements: {
+          formButtonPrimary: 
+            "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-2xl transition-all duration-300",
+          card: "rounded-2xl shadow-2xl",
+          headerTitle: "text-2xl font-bold text-gray-900",
+          headerSubtitle: "text-gray-600",
+          socialButtonsBlockButton: "border-2 border-gray-200 hover:border-gray-300 rounded-xl transition-all duration-300",
+          formFieldInput: "rounded-xl border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+          footerActionLink: "text-blue-600 hover:text-blue-700 font-semibold"
+        }
+      }}
+    >
       <html lang="en">
         <head>
           <link
