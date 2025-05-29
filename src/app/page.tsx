@@ -115,7 +115,7 @@ export default function Home() {
               </SignInButton>
               <SignUpButton mode="modal">
                 <button className="relative group px-10 py-4 font-semibold text-gray-700 transition-all duration-300 bg-white border-2 border-gray-200 rounded-2xl hover:border-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:text-white hover:shadow-2xl hover:scale-[1.02]">
-                  <span className="relative z-10">Get Started</span>
+                  <span className="relative z-10">Sign Up (Allowed Users Only)</span>
                 </button>
               </SignUpButton>
             </SignedOut>

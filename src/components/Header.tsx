@@ -43,7 +43,7 @@ export default function Header() {
               </SignInButton>
               <SignInButton mode="modal">
                 <button className="px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
-                  Get Started
+                  Sign Up (Allowed Users Only)
                 </button>
               </SignInButton>
             </SignedOut>
